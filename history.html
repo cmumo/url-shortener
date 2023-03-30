@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block body %}
+<h2>My Shortened Links</h2>
+
+<table>
+	<thead>
+    <tr>
+      <th>S. No</th>
+      <th>Original </th>
+      <th>Shortened Links</th>
+    </tr>
+  </thead>
+
+	<tbody>
+    {% for url in short_links %}
+        <tr>
+            <td>{{url.id}}</td>
+            <td>{{url.url}}</td>
+            <td>{{url.short_url}}</td>
+        </tr>
+        {% endfor %}
+  </tbody>
+
+    </table>
+</div>
+
+<div class="delete">
+    <form action="{{ url_for('delete') }}" method="POST">
+        <button type="submit">Delete All</button>
+    </form>
+</div>
+
+<div>
+    <form action="{{ url_for('home') }}">
+        <button style="margin: 30px auto; border-radius: 5px; background-color: aquamarine;">Back to Home</button>
+    </form>
+</div>
+{% endblock %}

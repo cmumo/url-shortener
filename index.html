@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<h2>URL Shortener</h2>
+
+<p><b>Please paste your link here 👇</b></p>
+<form action="{{url_for('home')}}" method="post">
+<input type="text" name="url" placeholder="Paste link here "><br><br>
+<button> Shorten URL</button>
+</form>
+
+<div class="shortened">
+    Your shortened Link: <br>
+    <input type="text" value="{{s_url}}" id="shortenedlink"> </input><br>
+    <button onclick="CopyFunction()"> Copy </button>
+  </div>
+
+<form action="{{url_for('history')}}">
+    <button style="margin: 10px auto; border-radius: 5px; background-color: aquamarine;">My History</button>
+    </form>
+
+<script>
+    function CopyFunction() {
+      var copyText = document.getElementById("shortenedlink");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); 
+      navigator.clipboard.writeText(copyText.value);
+      var message = "Link copied!";
+  alert(message);
+    }
+    </script>
+    
+{% endblock %}
